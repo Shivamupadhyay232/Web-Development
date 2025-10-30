@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VenomGaming — Official Channel</title>
+  <meta name="description" content="VenomGaming — Gameplay, live streams, guides, merch, and community." />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <style>
+    /* ====== Basic Reset ====== */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.45;color:var(--fg);background:var(--bg)}
+
+    /* ====== Theme Variables (dark-first) ====== */
+    :root{
+      --bg: #0b0f12;
+      --panel: #0f161a;
+      --accent: #2dd4bf; /* teal-ish */
+      --accent-2: #8b5cf6; /* purple */
+      --muted: #9aa6b2;
+      --fg: #e6eef3;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 12px;
+      --max-width:1160px;
+      --container-padding:20px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.6);
+    }
+
+    /* ====== Layout ====== */
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+    header{padding:18px 0;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#041018;font-weight:700;font-size:20px;box-shadow:var(--shadow)}
+    nav ul{display:flex;gap:14px;list-style:none;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{color:var(--fg);background:rgba(255,255,255,0.03)}
+    .cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041018;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+
+    /* ====== Hero ====== */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:28px 0}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:28px;border-radius:16px;box-shadow:var(--shadow)}
+    .hero h1{font-size:36px;margin-bottom:12px}
+    .hero p{color:var(--muted);margin-bottom:18px}
+    .stats{display:flex;gap:14px}
+    .stat{background:var(--glass);padding:10px 12px;border-radius:10px;text-align:center}
+    .stat b{display:block;font-size:18px}
+
+    /* Video / player preview */
+    .player{border-radius:12px;overflow:hidden;background:#000;height:100%;min-height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+    .player iframe{width:100%;height:100%;display:block}
+
+    /* Sections */
+    section{margin:32px 0}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .grid{display:grid;gap:16px}
+
+    /* Latest videos */
+    .videos-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .video-card{background:var(--panel);border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    .video-thumb{position:relative;padding-top:56.25%;background:#071018}
+    .video-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .video-body{padding:12px}
+    .video-title{font-weight:600;margin-bottom:6px}
+    .video-meta{color:var(--muted);font-size:13px}
+
+    /* Schedule */
+    .schedule-table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;overflow:hidden}
+    .schedule-table th,.schedule-table td{padding:12px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .schedule-table th{background:rgba(255,255,255,0.02);color:var(--muted)}
+
+    /* Merch */
+    .cards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px}
+    .price{font-weight:700}
+
+    /* Gallery */
+    .gallery{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+    .gallery img{width:100%;height:120px;object-fit:cover;border-radius:10px}
+
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* Responsive */
+    @media (max-width:940px){
+      .hero{grid-template-columns:1fr}
+      .player{min-height:200px}
+      .logo{width:46px;height:46px}
+    }
+
+    @media (max-width:520px){
+      nav ul{display:none}
+      header{gap:12px}
+      .hero h1{font-size:26px}
+    }
+
+    /* small util */
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;padding:8px 12px;border-radius:10px;text-decoration:none}
+    .outline{border:1px solid rgba(255,255,255,0.06)}
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">VG</div>
+        <div>
+          <div style="font-weight:700">VenomGaming</div>
+          <div class="muted" style="font-size:13px">Tactical plays • Speedruns • Live streams</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#videos">Videos</a></li>
+          <li><a href="#streams">Streams</a></li>
+          <li><a href="#guides">Guides</a></li>
+          <li><a href="#merch">Merch</a></li>
+          <li><a href="#community">Community</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="pill" href="#subscribe">Subscribe</a>
+        <a class="cta" href="#donate">Join</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-card">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <h1>VenomGaming — Bite-sized pro plays</h1>
+            <p>Welcome to the official VenomGaming hub — highlights, full playthroughs, pro guides and the live schedule. Join the Venom squad and level up your game.</p>
+            <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+              <a class="btn outline" href="#videos">Latest Videos</a>
+              <a class="btn" style="background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041018" href="#streams">Watch Live</a>
+            </div>
+
+            <div style="margin-top:18px" class="stats">
+              <div class="stat"><b>1.2M</b><span class="muted">Subscribers</span></div>
+              <div class="stat"><b>85K</b><span class="muted">Followers (Twitch)</span></div>
+              <div class="stat"><b>4.7</b><span class="muted">Avg Viewer (k)</span></div>
+            </div>
+          </div>
+
+          <div style="width:340px">
+            <div class="player" id="player">
+              <!-- Placeholder embed; replace src with your featured YouTube live/video -->
+              <iframe id="featureVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Featured video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick community box -->
+      <aside>
+        <div class="hero-card" style="display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,rgba(139,92,246,0.08),transparent)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Now streaming</strong>
+            <span class="pill">LIVE</span>
+          </div>
+          <div class="muted">Title: Apex Tactics — Ranked grind</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn outline" href="#chat">Open Chat</a>
+            <a class="btn" style="background:var(--accent);color:#041018" href="#follow">Follow</a>
+          </div>
+
+          <div style="border-top:1px solid rgba(255,255,255,0.03);padding-top:12px">
+            <div class="muted" style="font-size:13px">Next stream</div>
+            <div style="font-weight:700">Sep 30, 2025 • 08:30 PM IST</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+      <div class="section-title">
+        <h2>Latest Videos</h2>
+        <a class="muted" href="#">View all on YouTube →</a>
+      </div>
+
+      <div class="grid videos-grid">
+        <!-- Example video card: duplicate and replace src/title/meta -->
+        <article class="video-card">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Video thumbnail">
+          </div>
+          <div class="video-body">
+            <div class="video-title">Top 10 Apex Plays — Ranked Clutch</div>
+            <div class="video-meta">45k views • 2 days ago</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/oHg5SJYRHA0/hqdefault.jpg" alt="Video thumbnail">
+          </div>
+          <div class="video-body">
+            <div class="video-title">Speedrun — Co-op Nightmare in 18:32</div>
+            <div class="video-meta">120k views • 1 week ago</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <img src="https://i.ytimg.com/vi/3GwjfUFyY6M/hqdefault.jpg" alt="Video thumbnail">
+          </div>
+          <div class="video-body">
+            <div class="video-title">Ultimate Guide — Weapon Mastery</div>
+            <div class="video-meta">78k views • 3 weeks ago</div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- STREAM SCHEDULE -->
+    <section id="streams">
+      <div class="section-title"><h2>Stream Schedule</h2><div class="muted">All times in IST</div></div>
+      <div style="overflow:auto">
+        <table class="schedule-table">
+          <thead>
+            <tr><th>Date</th><th>Time (IST)</th><th>Game / Title</th><th>Platform</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sep 30, 2025</td><td>20:30</td><td>Apex Legends — Ranked</td><td>Twitch</td></tr>
+            <tr><td>Oct 02, 2025</td><td>19:00</td><td>Co-op Campaign — Speedrun</td><td>YouTube</td></tr>
+            <tr><td>Oct 05, 2025</td><td>21:00</td><td>Community Night — Fun Mode</td><td>Twitch</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section id="guides">
+      <div class="section-title"><h2>Guides & Walkthroughs</h2><a class="muted" href="#">See all guides</a></div>
+      <div class="grid cards">
+        <article class="card">
+          <h3>How to Clutch: Positioning & Rotations</h3>
+          <p class="muted">A tactical guide focusing on map control, rotations and timing.</p>
+          <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+            <div class="muted">Read time: 6 min</div>
+            <a class="btn outline" href="#">Read</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Weapon Tiers & Builds (Patch 2025.3)</h3>
+          <p class="muted">Updated meta: best attachments and loadouts.</p>
+          <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
+            <div class="muted">Read time: 8 min</div>
+            <a class="btn outline" href="#">Read</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- MERCH -->
+    <section id="merch">
+      <div class="section-title"><h2>Merch Store</h2><a class="muted" href="#">Full store →</a></div>
+      <div class="grid cards">
+        <div class="card">
+          <img src="https://via.placeholder.com/420x240.png?text=Venom+Hoodie" alt="Hoodie" style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:10px">
+          <h3>Signature Venom Hoodie</h3>
+          <div class="muted">Soft fleece, embroidered logo.</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+            <div class="price">₹1,799</div>
+            <a class="btn" href="#">Buy</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://via.placeholder.com/420x240.png?text=Venom+Cap" alt="Cap" style="width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:10px">
+          <h3>VG Snapback Cap</h3>
+          <div class="muted">One-size, adjustable.</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+            <div class="price">₹599</div>
+            <a class="btn" href="#">Buy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY & COMMUNITY -->
+    <section id="community">
+      <div class="section-title"><h2>Gallery & Clips</h2><a class="muted" href="#">Upload your clip</a></div>
+      <div class="grid gallery">
+        <img src="https://picsum.photos/400/300?random=12" alt="screenshot">
+        <img src="https://picsum.photos/400/300?random=13" alt="screenshot">
+        <img src="https://picsum.photos/400/300?random=14" alt="screenshot">
+        <img src="https://picsum.photos/400/300?random=15" alt="screenshot">
+      </div>
+
+      <div style="margin-top:18px;display:flex;gap:12px;align-items:center">
+        <a class="btn outline" href="#">Discord</a>
+        <a class="btn" href="#">Community Forum</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div style="max-width:420px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+            <div class="logo">VG</div>
+            <div style="font-weight:700">VenomGaming</div>
+          </div>
+          <div class="muted">Official site for VenomGaming. Stay updated on streams, releases and merch.</div>
+        </div>
+
+        <div style="display:flex;gap:28px;flex-wrap:wrap">
+          <div>
+            <div style="font-weight:700;margin-bottom:8px">Links</div>
+            <div class="muted">Videos<br>Streams<br>Guides<br>Merch</div>
+          </div>
+
+          <div>
+            <div style="font-weight:700;margin-bottom:8px">Contact</div>
+            <div class="muted">bookings@venomgaming.example<br>discord.gg/venom</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div class="muted">© 2025 VenomGaming • All rights reserved</div>
+        <div style="display:flex;gap:10px">
+          <a class="muted" href="#">Twitter</a>
+          <a class="muted" href="#">YouTube</a>
+          <a class="muted" href="#">Twitch</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple JS enhancements: lazy loading, future expansion hooks
+    document.addEventListener('click', (e) => {
+      // If a video card is clicked, open it in the featured player (simple behavior)
+      const card = e.target.closest('.video-card');
+      if(card){
+        const img = card.querySelector('img');
+        // Demo swap: replace iframe src with placeholder youtube id (extract from thumbnail if possible)
+        const thumb = img?.src || '';
+        // Extract youtube id pattern (this is a best-effort demo; replace with real data in production)
+        const match = thumb.match(/vi\/(.*?)\//) || thumb.match(/vi\/(.*?)$/);
+        const id = match ? match[1] : 'dQw4w9WgXcQ';
+        const player = document.getElementById('featureVideo');
+        player.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+    });
+
+    // Accessibility: keyboard focus outlines
+    document.body.addEventListener('keyup', (e)=>{
+      if(e.key === 'Tab') document.documentElement.style.setProperty('--outline','2px solid rgba(45,212,191,0.4)');
+    });
+  </script>
+</body>
+</html>
