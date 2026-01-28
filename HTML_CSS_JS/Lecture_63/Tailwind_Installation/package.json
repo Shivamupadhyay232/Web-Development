@@ -1,4 +1,7 @@
 {
+  "scripts": {
+  "tailwind": "tailwindcss -i ./input.css -o ./output.css --watch"
+  },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18"
   },
